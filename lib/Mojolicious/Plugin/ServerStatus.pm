@@ -7,7 +7,7 @@ use JSON;
 use Fcntl qw(:DEFAULT :flock);
 use IO::Handle;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 my $JSON = JSON->new->utf8(0);
 
@@ -64,7 +64,7 @@ sub register {
     }
 
     my $r = $app->routes;
-    $r->route($args->{path})->to(
+    $r->any($args->{path})->to(
         cb => sub {
             my $self = shift;
             my $req = $self->req;
